@@ -29,18 +29,30 @@ public class Grafo<TIPO> {
     }
 
     
-    public void adicionarAresta(Double peso, TIPO inicio, TIPO fim) {
+    public void adicionarAresta(Double peso, TIPO dadoInicio, TIPO dadoFim) {
+        
+            Vertice<TIPO> inicio = this.getVertice(dadoInicio);
+            Vertice<TIPO> fim = this.getVertice(dadoFim);
             
+            Aresta<TIPO> aresta = new Aresta<TIPO>(peso, inicio, fim);
+            inicio.adicionarArestasSaida(aresta);
+            fim.adicionarArestasEntrada(aresta);
+            //guarda a aresta no grafo
+            this.arestas.add(aresta);
     }
     
     //Metodo que retorna um VERTICE
     //Faz a busca de um DADO especifico
     public Vertice<TIPO> getVertice(TIPO dado){
-        
         Vertice<TIPO> vertice = null; //retorna null se não encontrar vertice
-                for(int i=0 < this.vertices.size(); i++){
-                    if(this )
+                for(int i=0; i < this.vertices.size(); i++){
+                    //verifica se o dado é igual ao dado informado
+                    if(this.vertices.get(i).getDado().equals(dado)){
+                        vertice = this.vertices.get(i);
+                        break;
+                    }
                 }
+                return vertice;
     }
             
 }
